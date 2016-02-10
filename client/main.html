@@ -54,20 +54,8 @@
                 dataType: "json",
                 data: {data:'{"Action":"GetMovies","Message":{"PageIndex":"' + index + '","PageSize":"10","Type":"1","ID":[-1],"Data":""}}'},
                 success: function(data) {
-                    
-                    for(var i in data.Message.Movies) {
-                        var div = $("<div class='col-md-6 play-movie'></div>").attr("data-id", data.Message.Movies[i].MovieID);
-                        var a = $("<a href='#modal'></a>");
-                        var img = $("<img class='img-responsive'/>").attr("src", data.Message.Movies[i].CoverImg);
-                        var p = $("<p></p>").text("xxx");
-
-                        a.append(img);
-                        a.append(p);
-
-                        div.append(a);
-
-                        $(".row").append(div);
-                    }
+                    var old = Session.get("items");
+                    Session.set("items", old.concat(data.Message.Movies));
 
                 }
         });
