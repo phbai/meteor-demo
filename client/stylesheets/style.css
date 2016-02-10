@@ -2,8 +2,14 @@
 	cursor: pointer;
 }
 
+.play-movie p{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+
 div#player {
-	position: absolute;
+	position: relative;
 	width: 960px;
 	height: 540px;
 	left: 0;
@@ -11,4 +17,20 @@ div#player {
 	right: 0;
 	bottom: 0;
 	margin: auto;
+}
+
+.remodal {
+	max-width: 960px!important;
+	height: 540px!important;
+	padding: 0!important;
+	margin-bottom: 0!important;
+}
+
+.remodal-close {
+	right: 0!important;
+	z-index: 99999;
+}
+
+.remodal-overlay {
+	background: rgba(32, 32, 22, 0.28)!important;
 }

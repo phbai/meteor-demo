@@ -1,10 +1,16 @@
 <head>
-	<title>hello</title>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
+	<title>本地小电影 😊</title>
+
+	<link href="//cdn.bootcss.com/remodal/1.0.6/remodal-default-theme.min.css" rel="stylesheet">
+	<link href="//cdn.bootcss.com/remodal/1.0.6/remodal.min.css" rel="stylesheet">
+
+	<script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
+	<script src="//cdn.bootcss.com/remodal/1.0.6/remodal.min.js"></script>
+	<!-- <script src="../../public/waterfall.min.js"></script> -->
 </head>
 
 <body>
-	<div>
+	<div class="remodal-bg">
 		<div class="container-fluid">
 			<div class="row">
 			{{#each items}}
@@ -14,5 +20,58 @@
 		</div>
 	</div>
 
-	<div id="player"></div>
+	
+
+	<div class="remodal" data-remodal-id="modal">
+		<button data-remodal-action="close" class="remodal-close"></button>
+		<div id="player"></div>
+		
+	</div>
+
+	<script type="text/javascript">
+		$(document).on('closing', '.remodal', function (e) {
+			$("#player").empty();
+		});
+	</script>
+
+    <script type="text/javascript">
+    	$(document).scroll(function(){
+            if ($(document).scrollTop() >= $(document).height() - $(window).height() - 200) {
+
+                if (!Session.get("index")) {
+                    Session.set("index", 1);
+                }
+
+                var index = Session.get("index");
+
+                index++;
+                Session.set("index", index); 
+
+                $.ajax({
+                url: "http://api.iimovie.cc/vodapi.html",
+                type: "POST",
+                async: false,
+                dataType: "json",
+                data: {data:'{"Action":"GetMovies","Message":{"PageIndex":"' + index + '","PageSize":"10","Type":"1","ID":[-1],"Data":""}}'},
+                success: function(data) {
+                    
+                    for(var i in data.Message.Movies) {
+                        var div = $("<div class='col-md-6 play-movie'></div>").attr("data-id", data.Message.Movies[i].MovieID);
+                        var a = $("<a href='#modal'></a>");
+                        var img = $("<img class='img-responsive'/>").attr("src", data.Message.Movies[i].CoverImg);
+                        var p = $("<p></p>").text("xxx");
+
+                        a.append(img);
+                        a.append(p);
+
+                        div.append(a);
+
+                        $(".row").append(div);
+                    }
+
+                }
+        });
+            }
+        });
+    </script>
 </body>
