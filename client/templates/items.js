@@ -8,7 +8,7 @@ $.ajax({
 	type: "POST",
 	async: false,
 	dataType: "json",
-	data: {data:'{"Action":"GetMovies","Message":{"PageIndex":"1","PageSize":"10","Type":"2","ID":[40],"Data":""}}'},
+	data: {data:'{"Action":"GetMovies","Message":{"PageIndex":"1","PageSize":"10","Type":"1","ID":[-1],"Data":""}}'},
 	success: function(data) {
 		Session.set("items", data.Message.Movies);
 	},
