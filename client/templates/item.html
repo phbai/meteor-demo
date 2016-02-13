@@ -1,8 +1,13 @@
 <template name="item">
-	<div class="col-md-6 play-movie" data-id="{{MovieID}}">
-		<a href="#modal">
-			<img class="img-responsive" src="{{CoverImg}}">
-			<p>{{Name}}</p>
-		</a>
+	<div class="col m6 play-movie">
+		<div class="card hoverable waves-effect waves-light">
+			<div class="card-image">
+				<a href="#modal">
+					<img class="responsive-img" src="{{CoverImg}}">
+					<!-- <span class="card-title white-text text-darken-2 truncate">{{Name}}</span> -->
+				</a>
+			</div>
+		</div>
 	</div>
+	
 </template>
