@@ -1,10 +1,11 @@
 
-Template.item.events({
-	"click .play-movie": function(event) {
-		var Token = "";
-        var isPassed;
+if (Meteor.isClient) {
+	Template.item.events({
+		"click .play-movie": function(event) {
+			var Token = "";
+			var isPassed;
 
-		$("#player").empty();
+			$("#player").empty();
 
         /*
         $.ajax({
@@ -35,10 +36,11 @@ Template.item.events({
 			});
 		// } 
 
-        
-		$.post("http://api.iimovie.cc/vodapi.html", {data:'{"Action":"PlayFreeMovie","Message":{"UID":"243A17B2-1DF5-462B-A521-C6194732B375","Token":"' + Token + '","MovieID":' + this.MovieID + '}}'}, function(data){
-		    // alert(data.Message);
-        	var player = new Clappr.Player({source: data.Message, parentId: "#player", width: 960, height: 540, autoPlay: true});
-		}, "json");
-	}
-});
+		
+			$.post("http://api.iimovie.cc/vodapi.html", {data:'{"Action":"PlayFreeMovie","Message":{"UID":"243A17B2-1DF5-462B-A521-C6194732B375","Token":"' + Token + '","MovieID":' + this.MovieID + '}}'}, function(data){
+			    // alert(data.Message);
+			    var player = new Clappr.Player({source: data.Message, parentId: "#player", width: 960, height: 540, autoPlay: true});
+			}, "json");
+		}
+	});
+}
