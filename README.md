@@ -1,6 +1,6 @@
-# porn-meteor
+# meteor-demo
 
-## 使用方法
-$ meteor
+## Usage
+1. install meteor
 
-> 打开浏览器 http://localhost:3000
+2. visit http://localhost:3000
